@@ -84,7 +84,7 @@ def place_youtube_videos_in_csv_file(num_videos: int, filename: str, overwrite: 
         str filename: the name of the file to place the video data in. This
         must be a CSV file.
 
-        bool overwrite: whether to overwrite the contents of the file.
+        bool overwrite: whether to overwrite file contents.
 
     Returns:
 
@@ -93,7 +93,31 @@ def place_youtube_videos_in_csv_file(num_videos: int, filename: str, overwrite: 
 
     check_if_file_is_csv(filename)
 
-    youtube_video_data_file: TextIO = make_file_object(filename, overwrite)
+    youtube_video_data_file: TextIO
+
+    if overwrite:
+
+        youtube_video_data_file = open(filename, "w")
+
+        file_object_writer = csv.writer(youtube_video_data_file)
+
+        file_object_writer.writerow([
+            "video_id",
+            "title",
+            "description",
+            "likes",
+            "views",
+            "date_published",
+            "publisher",
+            "child_friendly",
+            "nsfw_word_count",
+            "violent_word_count",
+            "swear_word_count",
+        ])
+
+    else:
+
+        youtube_video_data_file = open(filename, "a")
 
     for _ in range(num_videos):
 
