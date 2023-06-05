@@ -1,0 +1,30 @@
+.account-page {
+    text-align: center;
+    justify-content: center;
+}
+
+.account-form {
+    width: 30vw;
+    height: 60vh;
+    position: absolute;
+    top: 35%;
+    right: 35%;
+    background-color: rgb(189, 189, 189);
+    z-index: 3;
+}
+
+.account-field {
+    position: relative;
+    justify-content: center;
+    background-color: #E0E0E0;
+    width: 18vw;
+    height: 5vh;
+    font-size: 150%;
+    border-radius: 2%;
+    border: 0.25vh solid black;
+    opacity: 0.6;
+}
+
+.account-label {
+    font-size: 3vh;
+}

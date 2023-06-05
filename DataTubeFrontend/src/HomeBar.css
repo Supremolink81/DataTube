@@ -1,0 +1,70 @@
+div#nav-bar {
+    position: absolute;
+    opacity: 1.0;
+    width: 100vw;
+    height: 20vh;
+    top: -4%;
+    right: 0%;
+    box-shadow: 1vh 1vh 1vh 1vh rgba(210, 210, 210, 0.7);
+    background-color: #fff;
+}
+
+#home-button {
+    left: 25%;
+    top: 30%;
+}
+  
+#home-button:hover {
+    background-image: url("https://thumbs.gfycat.com/FewCookedGlassfrog-max-1mb.gif");
+    opacity: 0.5;
+}
+  
+#login-button {
+    left: 37.5%;
+    top: 30%;
+}
+  
+#login-button:hover {
+    background-image: url("https://cdn.dribbble.com/users/186202/screenshots/4921305/media/c6d0ef05a724cf4fe73b3668cd64f2b2.gif");
+    opacity: 0.5;
+}
+  
+#signup-button {
+    left: 50%;
+    top: 30%;
+}
+  
+#signup-button:hover {
+    background-image: url("https://miro.medium.com/freeze/fit/c/80/56/1*BJHpzKGCqf7TrVQb96656Q.gif" );
+    opacity: 0.5;
+}
+  
+#query-button {
+    left: 62.5%;
+    top: 30%;
+}
+  
+#query-button:hover {
+    background-image: url("https://miro.medium.com/v2/resize:fit:1152/1*i_Q34RRfcGUsniN6RIxnuQ.gif");
+    opacity: 0.5;
+}
+  
+#history-button {
+    left: 75%;
+    top: 30%;
+}
+  
+#history-button:hover {
+    background-image: url("https://1.bp.blogspot.com/-EcbUtnzuE0s/XkQcmmFvbzI/AAAAAAAAfZA/xllKPOV6pVILdDr6nOrwQ-IY2-Ascx9qwCLcBGAsYHQ/s640/Hnet-image.gif");
+    opacity: 0.5;
+}
+  
+#report-button {
+    left: 87.5%;
+    top: 30%;
+}
+  
+#report-button:hover {
+    background-image: url("https://i.gifer.com/origin/71/711557abfeed55bc0ebc5185168147c6.gif");
+    opacity: 0.5;
+}

@@ -3,6 +3,7 @@ import os
 import csv
 import api_to_csv
 from typing import TextIO
+from dotenv import load_dotenv
 
 def add_csv_data_to_db(filename: str, db_name: str) -> None:
 
@@ -20,8 +21,8 @@ def add_csv_data_to_db(filename: str, db_name: str) -> None:
         None
     """
 
-    supabase_url: str = os.environ.get("SUPABASE_URL")
-    supabase_key: str = os.environ.get("SUPABASE_PRIVATE_KEY")
+    supabase_url: str = os.getenv("SUPABASE_URL")
+    supabase_key: str = os.getenv("SUPABASE_PRIVATE_KEY")
     supabase_client: supabase.client.Client = supabase.client.create_client(supabase_url, supabase_key)
 
     database: supabase.client.SyncRequestBuilder = supabase_client.table(db_name)
@@ -32,14 +33,18 @@ def add_csv_data_to_db(filename: str, db_name: str) -> None:
 
     csv_reader: csv.DictReader = csv.DictReader(csv_file)
 
+    print(csv_reader.line_num)
+
     for csv_row in csv_reader:
+
+        print(csv_row)
 
         insert_row_request: supabase.client.AsyncQueryRequestBuilder = database.insert(csv_row)
 
         insert_row_request.execute()
 
-        break
-
 if __name__ == "__main__":
+
+    load_dotenv()
 
     add_csv_data_to_db("youtube_video_data.csv", "YouTube Videos")

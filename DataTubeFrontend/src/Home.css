@@ -1,0 +1,47 @@
+#home-page {
+  justify-content: center;
+}
+
+#about-title {
+  position: relative;
+  font-size: 5vh;
+}
+  
+p {
+  font-size: 2.5vh;
+  justify-content: center;
+}
+
+.rhombus {
+  position: relative;
+  background-color: #ff2727;
+  opacity: 0.7;
+  border: 0.25vh solid black;
+  z-index: 5;
+
+  transform: rotate(67.5deg) skewX(45deg) scaleY(cos(45deg));
+}
+
+.page-rhombus {
+  width: 1.5vw;
+  height: 1.5vw;
+  left: 49%;
+}
+
+.text-rhombus {
+  width: 0.75vw;
+  height: 0.75vw;
+  left: 49.5%;
+}
+
+#about-rhombus {
+  top: 34%;
+}
+
+#about-paragraph-rhombus-1 {
+  top: 48%;
+}
+
+#about-paragraph-rhombus-2 {
+  top: 80%;
+}
