@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "YouTubeFont";
+  src: url("youtube-sans-bold.ttf") format("truetype");
+}
+
+* {
+  font-family: "YouTubeFont", Fallback, sans-serif;
+}
+
+html {
+  background-color: #E0E0E0;
+}
+
+.page-title {
+  position: relative;
+  top: 6vh;
+  font-size: 10vh;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+button {
+  background-color: #ff2727;
+  opacity: 0.7;
+  border-radius: 5%;
+  font-size: 4vh;
+  background-image: none;
+  border: 0.25vh solid black;
+}
+
+button:hover {
+  transition: all 0.5s ease;
+}
+
+.fade-button {
+  position: absolute;
+  width: 10vw;
+  height: 10vh;
+  transition: border-radius 0.8s;
+  left: 15%;
+}
+
+.fade-button:hover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: 0.5vh solid rgba(0, 0, 0, 0.7);
+}
+
+#datatube-logo-pic {
+  position: relative;
+  width: 10vw;
+  height: 10vh;
+  left: 40%;
+}
+
+#datatube-logo {
+  position: absolute;
+  left: -12%;
+  top: 3%;
+  width: 20vw;
+  height: 20vh;
+  z-index: 5;
+}
+
+#datatube-logo-text {
+  position: relative;
+  font-size: 7vh;
+  left: 100%;
+  bottom: 75%;
+}
+
+a, a:hover, a:visited {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+  opacity: 1;
+}
+
+#query-choice {
+  top: 60%;
+}
