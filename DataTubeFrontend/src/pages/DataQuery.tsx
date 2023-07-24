@@ -178,16 +178,92 @@ const Analysis: React.FC<{}> = () => {
 
 }
 
+type RegressionVariablesProperties = {
+    dependent_variable: string,
+}
+
+const RegressionVariables: React.FC<RegressionVariablesProperties> = (props) => {
+
+    if (props.dependent_variable === "Date Published") {
+
+        return (
+
+            <>
+                <h2 id="feature-selection-header">Choose your features: </h2>
+
+                <p><input type="checkbox" id="likes-checkbox" name="likes-checkbox"></input>Likes</p>
+                <p><input type="checkbox" id="views-checkbox" name="views-checkbox"></input>Views</p>
+                <p><input type="checkbox" id="comments-checkbox" name="comments-checkbox"></input>Comments</p>
+            </>
+
+        );
+
+    } else if (props.dependent_variable === "Views") {
+
+        return (
+
+            <>
+                <h2 id="feature-selection-header">Choose your features: </h2>
+                
+                <p><input type="checkbox" id="date-published-checkbox" name="date-published-checkbox"></input>Date Published</p>
+                <p><input type="checkbox" id="likes-checkbox" name="likes-checkbox"></input>Likes</p>
+                <p><input type="checkbox" id="comments-checkbox" name="comments-checkbox"></input>Comments</p>
+            </>
+
+        );
+
+    } else if (props.dependent_variable === "Likes") {
+
+        return (
+
+            <>
+                <h2 id="feature-selection-header">Choose your features: </h2>
+                
+                <p><input type="checkbox" id="date-published-checkbox" name="date-published-checkbox"></input>Date Published</p>
+                <p><input type="checkbox" id="views-checkbox" name="views-checkbox"></input>Views</p>
+                <p><input type="checkbox" id="comments-checkbox" name="comments-checkbox"></input>Comments</p>
+            </>
+
+        );
+
+    } else if (props.dependent_variable === "Comments") {
+
+        return (
+
+            <>
+                <h2 id="feature-selection-header">Choose your features: </h2>
+                
+                <p><input type="checkbox" id="date-published-checkbox" name="date-published-checkbox"></input>Date Published</p>
+                <p><input type="checkbox" id="likes-checkbox" name="likes-checkbox"></input>Likes</p>
+                <p><input type="checkbox" id="views-checkbox" name="views-checkbox"></input>Views</p>
+            </>
+
+        );
+
+    }
+
+    return <></>;
+
+}
+
 const Regression: React.FC<{}> = () => {
+
+    let [variable, setVariable] = useState("");
+
+    const handleVariableChange: React.ChangeEventHandler<HTMLSelectElement> = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setVariable(e.target.value);
+    }
 
     return (
 
         <>
 
             <h2 id="regression-target-variable-text">Choose your target variable:</h2>
-            <select id="regression-target-variable-choice" name="regression-target-variable-choice">
+            <select id="regression-target-variable-choice" name="regression-target-variable-choice" onChange={handleVariableChange}>
                 <VariableOptions />
             </select>
+
+            <RegressionVariables dependent_variable={variable} />
 
         </>
 
