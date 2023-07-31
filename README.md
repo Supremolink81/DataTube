@@ -22,11 +22,13 @@ with ASCII, such as emojis, had to be converted with a semantic ASCII converter.
 
 # Tech Stack
 
+<img src="./Images/ReactLogo.png" width="50">
+
 ![React Logo](./Images/ReactLogo.png)![TypeScript Logo](./Images/TypeScriptLogo.png)
 
 The frontend is Typescript and React, with classic HTML and CSS.
 
-![NodeJS Logo](./Images/TypeScriptLogo.png)
+![NodeJS Logo](./Images/NodeJSLogo.png)
 
 The backend (planned, not finalized) is Node in Typescript running on an Oracle Cloud compute instance. The instance runs on Ubuntu 20.04 on an Ampere processor with 4 OCPUs and 24 GB of memory (this was the maximum performance under the Always Free tier).
 
