@@ -1,5 +1,7 @@
 # DataTube
 
+![DataTube Home Page](./Images/DataTubePage.png)
+
 This is a website to allow users to analyze data collected from YouTube videos. 
 
 The data consists of information collected from YouTube videos. This information includes
@@ -17,6 +19,20 @@ and how many comments there actually are. Second, the choice to make search quer
 was only to balance between video diversity and stability of searches and was not based on a specific
 heuristic. Third, due to Excel not supporting the Unicode character encoding, characters not compatible
 with ASCII, such as emojis, had to be converted with a semantic ASCII converter.
+
+# Tech Stack
+
+![React Logo](./Images/ReactLogo.png)![TypeScript Logo](./Images/TypeScriptLogo.png)
+
+The frontend is Typescript and React, with classic HTML and CSS.
+
+![NodeJS Logo](./Images/TypeScriptLogo.png)
+
+The backend (planned, not finalized) is Node in Typescript running on an Oracle Cloud compute instance. The instance runs on Ubuntu 20.04 on an Ampere processor with 4 OCPUs and 24 GB of memory (this was the maximum performance under the Always Free tier).
+
+![SQL Logo](./Images/SQLLogo.png)
+
+The database is an Oracle Autonomous Database that uses an SQL structure. For querying the database, I am developing a REST API consisting primarily of GET methods, but some POST methods as well for authentication and user data updates (namely, for keeping track of Query History).
 
 # Feature Summary
 
