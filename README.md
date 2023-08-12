@@ -22,17 +22,15 @@ with ASCII, such as emojis, had to be converted with a semantic ASCII converter.
 
 # Tech Stack
 
-<img src="./Images/ReactLogo.png" width="50">
-
-![React Logo](./Images/ReactLogo.png)![TypeScript Logo](./Images/TypeScriptLogo.png)
+<img src="./Images/ReactLogo.png" width="150"><img src="./Images/TypeScriptLogo.png" width="150">
 
 The frontend is Typescript and React, with classic HTML and CSS.
 
-![NodeJS Logo](./Images/NodeJSLogo.png)
+<img src="./Images/NodeJSLogo.png" width="150">
 
 The backend (planned, not finalized) is Node in Typescript running on an Oracle Cloud compute instance. The instance runs on Ubuntu 20.04 on an Ampere processor with 4 OCPUs and 24 GB of memory (this was the maximum performance under the Always Free tier).
 
-![SQL Logo](./Images/SQLLogo.png)
+<img src="./Images/SQLLogo.png" width="150">
 
 The database is an Oracle Autonomous Database that uses an SQL structure. For querying the database, I am developing a REST API consisting primarily of GET methods, but some POST methods as well for authentication and user data updates (namely, for keeping track of Query History).
 
