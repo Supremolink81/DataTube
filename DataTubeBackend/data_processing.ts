@@ -9,7 +9,7 @@ type FilterInfo = {
 
 const connectToOracle: Function = async () => {
 
-    let connection;
+    let connection: oracledb.Connection | undefined = undefined;
 
     try {
 
@@ -19,7 +19,7 @@ const connectToOracle: Function = async () => {
 
         const DATABASE_CONNECT_STRING = process.env.DATABASE_CONNECT_STRING;
 
-        connection = oracledb.getConnection({user: DATABASE_USERNAME, password: DATABASE_PASSWORD, connectionString: DATABASE_CONNECT_STRING});
+        connection = await oracledb.getConnection({user: DATABASE_USERNAME, password: DATABASE_PASSWORD, connectionString: DATABASE_CONNECT_STRING});
 
         return connection;
 
@@ -29,7 +29,7 @@ const connectToOracle: Function = async () => {
         
     } finally {
 
-        if (connection) {
+        if (connection !== undefined) {
 
             try {
 
@@ -47,13 +47,39 @@ const connectToOracle: Function = async () => {
 
 }
 
-const getFilteredData: Function = (dataTable: d3.DSVRowArray, filters: Array<FilterInfo>) => {
+const getFilteredData: Function = async (filters: Array<FilterInfo>, variableName: string) => {
     
-    let oracleDatabase = connectToOracle();
+    let oracleDatabase: oracledb.Connection = connectToOracle();
 
     try {
 
-        const sqlQuery: string = `SELECT * FROM YoutubeVideoData WHERE `;
+        let sqlQuery: string = `select ${variableName} from YoutubeVideoData where`;
+
+        for (let index = 0; index < filters.length; index++) {
+
+            if (index > 0) {
+
+                sqlQuery += " and";
+
+            }
+
+            const filter = filters[index];
+
+            sqlQuery += ` ${filter.minValue} <= ${filter.variable} <= ${filter.maxValue}`;
+
+        }
+
+        let queryResult = await oracleDatabase.execute(sqlQuery);
+
+        if (queryResult.resultSet !== undefined) {
+
+            let rowsRetrieved = await queryResult.resultSet.getRows();
+
+            await queryResult.resultSet.close();
+
+            return rowsRetrieved;
+
+        }
 
     } catch (error) {
 
@@ -63,4 +89,4 @@ const getFilteredData: Function = (dataTable: d3.DSVRowArray, filters: Array<Fil
 
 }
 
-module.exports = getFilteredData
+export {getFilteredData};

@@ -1,30 +1,26 @@
 import * as express from "express";
-import * as visualization from "./visualization"
-import * as preprocessing from "./data_processing"
-import * as analysis from "./analysis"
+import {oneVariableVisualization, twoVariableVisualization} from "./visualization"
+import {getFilteredData} from "./data_processing"
+import {oneVariableSummaryStats, twoVariableSummaryStats} from "./analysis"
 import * as regression from "./regression"
 
 const router = express.Router();
 
-router.get("/oneVariableVisualization", (req, res) => {
+router.get("/oneVariableVisualization", async (req, res) => {
 
     const variableName = req.query.variableName;
 
-    const visualizationType = req.query.visualizationType;
-
-});
-
-router.get("/twoVariableVisualization", (req, res) => {
-
-    const firstVariableName = req.query.firstVariableName;
-
-    const secondVariableName = req.query.secondVariableName;
-
-    const visualizationType = req.query.visualizationType;
+    const filters = req.query.filters;
 
     try {
 
-        const visualizationImage = "Placeholder";
+        const visualizationType: string = req.query.visualizationType as string;
+
+        const filteredData = await getFilteredData(filters, variableName);
+
+        const visualizationImage = oneVariableVisualization(filteredData, visualizationType);
+
+        res.sendFile(visualizationImage);
 
     } catch (error) {
 
@@ -33,13 +29,44 @@ router.get("/twoVariableVisualization", (req, res) => {
 
 });
 
-router.get("/oneVariableAnalysis", (req, res) => {
+router.get("/twoVariableVisualization", async (req, res) => {
 
-    const variableName = req.query.variableName;
+    const firstVariableName = req.query.firstVariableName;
+
+    const secondVariableName = req.query.secondVariableName;
+
+    const filters = req.query.filters;
 
     try {
 
-        const analysisResults = "Placeholder";
+        const visualizationType: string = req.query.visualizationType as string;
+
+        const filteredDataFirstVariable = await getFilteredData(filters, firstVariableName);
+
+        const filteredDataSecondVariable = await getFilteredData(filters, secondVariableName);
+
+        const visualizationImage = twoVariableVisualization(filteredDataFirstVariable, filteredDataSecondVariable, visualizationType);
+
+        res.sendFile(visualizationImage);
+
+    } catch (error) {
+
+        res.send(error);
+    }
+
+});
+
+router.get("/oneVariableAnalysis", async (req, res) => {
+
+    const variableName = req.query.variableName;
+
+    const filters = req.query.filters;
+
+    try {
+
+        const filteredData = await getFilteredData(filters, variableName);
+
+        const analysisResults = oneVariableSummaryStats(filteredData);
 
         res.send(analysisResults);
 
@@ -51,15 +78,21 @@ router.get("/oneVariableAnalysis", (req, res) => {
 
 });
 
-router.get("/twoVariableAnalysis", (req, res) => {
+router.get("/twoVariableAnalysis", async (req, res) => {
 
     const firstVariableName = req.query.firstVariableName;
 
     const secondVariableName = req.query.secondVariableName;
 
+    const filters = req.query.filters;
+
     try {
 
-        const analysisResults = "Placeholder";
+        const filteredDataFirstVariable = await getFilteredData(filters, firstVariableName);
+
+        const filteredDataSecondVariable = await getFilteredData(filters, secondVariableName);
+
+        const analysisResults = twoVariableSummaryStats(filteredDataFirstVariable, filteredDataSecondVariable);
 
         res.send(analysisResults);
 
@@ -71,13 +104,17 @@ router.get("/twoVariableAnalysis", (req, res) => {
 
 });
 
-router.get("/regression", (req, res) => {
+router.get("/regression", async (req, res) => {
 
     const responseVariable = req.query.responseVariable;
 
     const explanatoryVariables = req.query.explanatoryVariables;
 
+    const filters = req.query.filters;
+
     try {
+
+        const filteredData = await getFilteredData(filters);
 
         const regressionModel = "Placeholder";
 
