@@ -89,3 +89,5 @@ const twoVariableSummaryStats: Function = (firstArrayOfData: Array<number>, seco
     };
 
 }
+
+module.exports = {oneVariableSummaryStats, twoVariableSummaryStats};
